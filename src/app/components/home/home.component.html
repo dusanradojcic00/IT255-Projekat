@@ -1,0 +1,3 @@
+<button class="btn btn-large" *ngFor="let category of items | async"
+    [routerLink]="['/category', category.key]">{{category.name}} and {{category.key}}</button>
+<button (click)="addCategory()">Dodaj</button>

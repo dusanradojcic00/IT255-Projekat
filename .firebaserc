@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "projekat-lager": {
+      "hosting": {
+        "projekat": [
+          "projekat-lager"
+        ]
+      }
+    }
+  }
+}
