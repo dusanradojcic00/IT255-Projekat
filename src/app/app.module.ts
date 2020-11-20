@@ -13,6 +13,10 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart/cart.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProductComponent } from './components/product/product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +26,20 @@ import { SearchComponent } from './components/search/search.component';
     LoadingComponent,
     CategoryComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    StoreModule.forRoot({ cart: cartReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
