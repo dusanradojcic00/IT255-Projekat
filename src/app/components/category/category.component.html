@@ -1,1 +1,6 @@
-<p>{{(item | async) | json}}</p>
+<div id="sidebar">
+    <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">{{category.name}}</a>
+</div>
+<div *ngIf="item$ | async as item">
+    <app-productlist [category]="item"></app-productlist>
+</div>

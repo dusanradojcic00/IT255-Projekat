@@ -1,0 +1,17 @@
+<div class="container">
+    <ul class="list-group">
+        <li *ngFor="let item of cartItems$ | async" class="list-group-item">
+            <div class=" d-flex" style="justify-content: space-between;">
+                <div>
+                    <h1>{{item.product.name}}</h1>
+                    <h2>Price: {{item.product.price}} RSD</h2>
+                </div>
+
+                <img src="{{item.product.image}}" width="100">
+            </div>
+            <div class="d-flex pt-2" style="justify-content: flex-end">
+                <button class="btn btn-danger" (click)="removeProduct(item)">Remove this item</button>
+            </div>
+        </li>
+    </ul>
+</div>

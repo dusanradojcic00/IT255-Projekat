@@ -1,9 +1,13 @@
 export class Product {
+    id: string;
     name: string;
     description: string;
-    options: [];
     image: string;
-    categoryId: string;
+    category: string;
+
+    constructor(name?: string, description?: string, image?: string, category?: string){
+        
+    }
 }
 
 export class Option {

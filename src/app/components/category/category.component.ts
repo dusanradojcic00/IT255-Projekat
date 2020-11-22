@@ -10,15 +10,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  itemsRef: AngularFireObject<any>;
-  item: Observable<any>;
+  item$: Observable<any>;
+  categories$: Observable<any[]>
   constructor(private route: ActivatedRoute, private router: Router, private _service: FirebaseService) {
 
   }
 
   ngOnInit(): void {
+    this.categories$ = this._service.getCategories();
     this.route.paramMap.subscribe(params => {
-      this.item = this._service.getCategory(params.get('id'));
+      this.item$ = this._service.getCategory(params.get('id'));
     });
   }
 
