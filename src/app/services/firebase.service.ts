@@ -66,6 +66,13 @@ export class FirebaseService {
     itemsRef.push(product);
   }
 
+  addProducts(products: Product[]): any {
+    const itemsRef: AngularFireList<any> = this._db.list('products');
+    products.forEach(product => {
+      itemsRef.push(product);
+    });
+  }
+
   updateProduct(product: Product): any {
     const itemsRef: AngularFireList<any> = this._db.list('products');
     console.log(product.key)
@@ -94,7 +101,7 @@ export class FirebaseService {
     return itemsRef.push(order);
   }
 
-  getOrdersByUser(user: string): any{
+  getOrdersByUser(user: string): any {
     const itemsRef = this._db.list('orders', ref => ref.orderByChild('user').equalTo(user));
     return itemsRef.valueChanges();
   }
@@ -112,6 +119,6 @@ export class FirebaseService {
   getAllOrders(): any {
     const itemsRef = this._db.list('orders');
     return itemsRef.valueChanges();
-    
+
   }
 }
