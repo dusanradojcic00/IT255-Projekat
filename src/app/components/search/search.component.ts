@@ -19,4 +19,8 @@ export class SearchComponent implements DoCheck {
     this.auth.logout();
     this.router.navigate(['']);
   }
+
+  onSearch(search: HTMLInputElement){
+    this.router.navigate(['/search', search.value]);
+  }
 }

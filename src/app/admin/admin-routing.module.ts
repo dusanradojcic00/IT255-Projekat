@@ -1,3 +1,4 @@
+import { ImportExportComponent } from './components/import-export/import-export.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { EditCategoryComponent } from './components/edit-category/edit-category.component';
 import { AddcategoryComponent } from './components/addcategory/addcategory.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'editproduct', component: EditProductComponent },
   { path: 'addcategory', component: AddcategoryComponent },
   { path: 'editcategory', component: EditCategoryComponent },
+  { path: 'import-export', component: ImportExportComponent },
   { path: '**', component: DashboardComponent }
 ];
 

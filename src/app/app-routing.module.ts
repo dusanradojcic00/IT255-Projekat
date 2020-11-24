@@ -1,3 +1,4 @@
+import { SearchResultComponent } from './components/search-result/search-result.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'category/:id', component: CategoryComponent },
   { path: 'product/:id', component: ProductComponent },
+  { path: 'search/:query', component: SearchResultComponent},
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

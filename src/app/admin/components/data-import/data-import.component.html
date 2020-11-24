@@ -1,3 +1,4 @@
 <input type="file" (change)=onFileChange($event)>
+<p>You can download a template <a (click)="downloadTemplate()" style="font-weight: 500; text-decoration: underline; cursor: pointer;">here</a></p>
 <br>
 <button *ngIf="isFileUploaded" (click)="onSubmit()" class="btn btn-large btn-success">Upload products</button>

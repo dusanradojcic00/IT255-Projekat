@@ -1,7 +1,7 @@
+import { Product } from 'src/app/models/product.model';
 import { DateHelper } from './../helpers/helper';
 import { Order } from './../models/order.model';
 import { Category } from './../models/category.model';
-import { Product } from './../models/product.model';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
@@ -43,6 +43,11 @@ export class FirebaseService {
     return itemsRef.valueChanges();
   }
 
+  searchProducts(query: string){
+    const itemsRef = this._db.list('products');
+    return itemsRef.valueChanges();
+  }
+
   getProduct(id: string) {
     const itemsRef = this._db.object(`/products/${id}`);
     return itemsRef.valueChanges()
@@ -70,6 +75,13 @@ export class FirebaseService {
     const itemsRef: AngularFireList<any> = this._db.list('products');
     products.forEach(product => {
       itemsRef.push(product);
+    });
+  }
+
+  updateProducts(products: Product[]): any {
+    const itemsRef: AngularFireList<any> = this._db.list('products');
+    products.forEach(product => {
+      itemsRef.update(product.key, product);
     });
   }
 

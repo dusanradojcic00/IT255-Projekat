@@ -11,10 +11,11 @@ import { CategoryDetailsComponent } from './components/category-details/category
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { DataImportComponent } from './components/data-import/data-import.component';
+import { ImportExportComponent } from './components/import-export/import-export.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent],
+  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent, ImportExportComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

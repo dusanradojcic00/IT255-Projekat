@@ -24,6 +24,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { loginReducer } from './store/user/user.reducer';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { RegisterComponent } from './components/register/register.component';
     ProductlistComponent,
     CartComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,

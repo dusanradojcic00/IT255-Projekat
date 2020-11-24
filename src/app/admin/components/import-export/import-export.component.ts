@@ -1,17 +1,21 @@
+import { map } from 'rxjs/operators';
+import { FirebaseService } from './../../../services/firebase.service';
 import { ExcelHelper } from './../../../helpers/helper';
 import { Product } from 'src/app/models/product.model';
-import { FirebaseService } from './../../../services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 @Component({
-  selector: 'app-data-import',
-  templateUrl: './data-import.component.html',
-  styleUrls: ['./data-import.component.css']
+  selector: 'app-import-export',
+  templateUrl: './import-export.component.html',
+  styleUrls: ['./import-export.component.css']
 })
-export class DataImportComponent {
+export class ImportExportComponent implements OnInit {
   isFileUploaded = false;
   products: Array<Product>;
   constructor(private database: FirebaseService) { }
+
+  ngOnInit(): void {
+  }
 
   onFileChange(ev) {
     let workBook = null;
@@ -27,22 +31,27 @@ export class DataImportComponent {
         return initial;
       }, {});
       this.products = jsonData.products.map(item => {
-        return new Product(item.name, item.description, item.image, item.category, item.price);
+        return new Product(item.name, item.description, item.image, item.category, item.price, item.key);
       })
       this.isFileUploaded = true;
     }
     reader.readAsBinaryString(file);
   }
 
-  onSubmit() {
-    this.database.addProducts(this.products);
+  onSubmit(){
+    this.database.updateProducts(this.products);
   }
 
-
-
   downloadTemplate() {
-    let arr = [{... new Product()}];
-    ExcelHelper.exportToFile(arr, "template");
+    ExcelHelper.exportToFile([{ ...new Product() }], "products");
+  }
+
+  exportData(){
+    let arr = [];
+    this.database.getProducts().subscribe(item => {
+      arr = item;
+      ExcelHelper.exportToFile(arr, "products");
+    })
   }
 
 }

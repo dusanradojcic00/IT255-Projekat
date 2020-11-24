@@ -35,10 +35,14 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   payment() {
-    let items;
+    let items: CartItem[];
     this._store.pipe(select(getCartItems)).subscribe(item => {
       items = item;
     });
+    if (items.length < 1){
+      alert('Your cart is empty!');
+      return;
+    }
     let total = 0;
     items.forEach(el => {
       total += el.product.price * el.quantity;
