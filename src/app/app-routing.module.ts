@@ -1,3 +1,4 @@
+import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AdminAuthGuard] },
   { path: '**', component: NotfoundComponent },
 ];
 

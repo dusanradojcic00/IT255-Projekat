@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="submitted" class="alert alert-success" role="alert">
+        You submitted successfully!
+        <button type="button" class="close" (click)="closeAlert()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <a routerLink="../">Go back</a>
+    <form [formGroup]="categoryForm" (submit)="onSubmit()" class="mt-3">
+        <div class="form-group">
+            <label for="nameInput">Category name</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="Enter category name"
+                formControlName="name">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Category name is required.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    </form>
+</div>

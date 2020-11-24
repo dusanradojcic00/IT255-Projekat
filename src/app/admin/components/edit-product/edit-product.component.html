@@ -1,0 +1,16 @@
+
+<div class="container ">
+    <a routerLink="../">Go back</a>
+    <div class="d-flex mt-3">
+        <ul class="list-group" style="max-width: 20%;">
+            <a *ngFor="let product of products$ | async; let i = index" (click)="setActiveProduct(product, i)"
+                style="cursor: pointer;">
+                <li class="list-group-item" [class.active]="i == currentIndex">{{product.name}}</li>
+            </a>
+        </ul>
+
+        <div *ngIf="current" class="ml-3" style="max-width: 80%; width: 80%;">
+            <app-product-details [product]="current"></app-product-details>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="container ">
+    <a routerLink="../">Go back</a>
+    <div class="d-flex mt-3">
+        <ul class="list-group" style="max-width: 20%;">
+            <a *ngFor="let category of categories$ | async; let i = index" (click)="setActiveCategory(category, i)"
+                style="cursor: pointer;">
+                <li class="list-group-item" [class.active]="i == currentIndex">{{category.name}}</li>
+            </a>
+        </ul>
+
+        <div *ngIf="current" class="ml-3" style="max-width: 80%; width: 80%;">
+            <app-category-details [category]="current"></app-category-details>
+        </div>
+    </div>
+</div>

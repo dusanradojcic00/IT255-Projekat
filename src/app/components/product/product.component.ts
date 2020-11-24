@@ -21,7 +21,13 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this._store.dispatch(addItem({ cartItem: new CartItem(this.product, 1) }));
+    let quantity: number;
+    quantity = parseInt(prompt('Enter the quantity:', '1'));
+    if (isNaN(quantity)) {
+      alert('Invalid input')
+      return;
+    }
+    this._store.dispatch(addItem({ cartItem: new CartItem(this.product, quantity) }));
   }
 
 }

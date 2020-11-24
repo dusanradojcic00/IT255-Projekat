@@ -1,6 +1,19 @@
-<div id="sidebar">
-    <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">{{category.name}}</a>
-</div>
-<div *ngIf="item$ | async as item">
-    <app-productlist [category]="item"></app-productlist>
+<div class="wrapper">
+
+    <nav id="sidebar">
+        <ul class="list-group">
+            <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">
+                <li class="list-group-item" routerLinkActive="active">{{category.name}}</li>
+            </a>
+        </ul>
+
+    </nav>
+
+
+    <div id="content">
+        <div *ngIf="item$ | async as item">
+            <app-productlist [category]="item"></app-productlist>
+        </div>
+    </div>
+
 </div>

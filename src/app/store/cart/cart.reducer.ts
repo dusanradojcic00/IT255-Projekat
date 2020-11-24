@@ -1,5 +1,5 @@
 import { CartItem } from './../../models/cart-item.model';
-import { addItem, removeItem } from './cart.actions';
+import { addItem, removeItem, removeAllItems } from './cart.actions';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 export interface CartState {
@@ -26,15 +26,16 @@ const _cartReducer = createReducer(
     on(addItem, (state, cartItem) => (Object.assign({}, state, { cartItems: [...state.cartItems, cartItem.cartItem] }))),
     on(removeItem, (state, cartItem) => (Object.assign({}, state, {
         cartItems: state.cartItems.filter(item => item.product !== cartItem.cartItem.product)
-    })))
+    }))),
+    on(removeAllItems, (state) => (Object.assign({}, state, { cartItems: [] })))
 );
 
 export function cartReducer(state, action) {
     return _cartReducer(state, action);
 }
-export const getCartState = createFeatureSelector<CartState>('cart');
+export const _getCartState = createFeatureSelector<CartState>('cart');
 
 export const getCartItems = createSelector(
-    getCartState,
+    _getCartState,
     (state: CartState) => state.cartItems
 );

@@ -19,16 +19,13 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
+  isAdmin(): boolean {
+    // return localStorage.getItem('isAdmin') === '1' ? true : false;
+    return localStorage.getItem('username') === 'dusanradojcic00@gmail.com' ? true : false;
+  }
+
   isUserLogged(): boolean {
-    let loggedIn: boolean;
-    this.store.pipe(select(getUserStatus)).subscribe(item => {
-      loggedIn = item;
-    })
-    if (this.getUserId() && loggedIn) {
-      return true;
-    } else {
-      return false
-    }
+    return this.getUserId() ? true : false;
   }
 
   signup(email: string, password: string) {
@@ -51,6 +48,7 @@ export class AuthService {
       .then(value => {
         console.log('Nice, it worked!', value);
         localStorage.setItem('userId', value.user.uid);
+        localStorage.setItem('username', value.user.email);
         this._router.navigate(['']);
         return true;
       })
@@ -63,5 +61,6 @@ export class AuthService {
   logout() {
     this.firebaseAuth.signOut();
     localStorage.removeItem('userId');
+    localStorage.removeItem('username');
   }
 }

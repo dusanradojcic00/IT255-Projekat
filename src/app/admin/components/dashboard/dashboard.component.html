@@ -1,0 +1,25 @@
+<div class="container">
+    <ul class="list-group mt-3">
+        <a routerLink="./addproduct">
+            <li class="list-group-item">Add product</li>
+        </a>
+        <a routerLink="./editproduct">
+            <li class="list-group-item">Edit products</li>
+        </a>
+    </ul>
+    <ul class="list-group mt-3">
+        <a routerLink="./addcategory">
+            <li class="list-group-item">Add category</li>
+        </a>
+        <a routerLink="/admin/editcategory">
+            <li class="list-group-item">Edit categories</li>
+        </a>
+    </ul>
+</div>
+<div class="container">
+    <div>
+        <div style="display: block">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType" [options]="lineChartOptions"></canvas>
+        </div>
+    </div>
+</div>

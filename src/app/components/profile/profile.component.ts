@@ -1,3 +1,6 @@
+import { AuthService } from './../../services/auth.service';
+import { FirebaseService } from './../../services/firebase.service';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
   loading: boolean;
-  constructor() { 
+  orders$: Observable<any>;
+  constructor(private database: FirebaseService, private auth: AuthService) { 
     this.loading = true;
   }
 
   ngOnInit(): void {
+    this.orders$ = this.database.getOrdersByUser(this.auth.getUserId());
   }
 
 }
