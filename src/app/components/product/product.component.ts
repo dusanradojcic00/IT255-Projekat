@@ -1,7 +1,7 @@
-import { CartItem } from './../../models/cart-item.model';
+import { CartItem } from '@shared/models/cart-item.model';
 import { addItem } from './../../store/cart/cart.actions';
-import { Option, Product } from './../../models/product.model';
-import { FirebaseService } from './../../services/firebase.service';
+import { Option, Product } from '@shared/models/product.model';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';

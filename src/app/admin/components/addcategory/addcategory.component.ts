@@ -1,4 +1,4 @@
-import { FirebaseService } from './../../../services/firebase.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 

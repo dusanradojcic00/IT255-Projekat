@@ -1,6 +1,6 @@
-import { getUserStatus } from './../store/user/user.reducer';
+import { getUserStatus } from './../../store/user/user.reducer';
 import { Store, select } from '@ngrx/store';
-import { removeItem } from './../store/cart/cart.actions';
+import { removeItem } from './../../store/cart/cart.actions';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

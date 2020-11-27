@@ -1,5 +1,6 @@
+import { OrdersComponent } from './components/orders/orders.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
-import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
+import { AdminAuthGuardService as AdminAuthGuard } from '@shared/services/admin-auth-guard.service';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -12,11 +13,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { AuthGuardService as AuthGuard } from '@shared/services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/myorders', component: OrdersComponent},
   { path: 'category/:id', component: CategoryComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'search/:query', component: SearchResultComponent},

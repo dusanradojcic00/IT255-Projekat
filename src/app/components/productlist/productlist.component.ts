@@ -1,4 +1,4 @@
-import { FirebaseService } from './../../services/firebase.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Observable } from 'rxjs';
 import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 

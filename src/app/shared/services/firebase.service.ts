@@ -1,6 +1,6 @@
-import { Product } from 'src/app/models/product.model';
+import { Product } from './../models/product.model';
 import { DateHelper } from './../helpers/helper';
-import { Order } from './../models/order.model';
+import { Order, StatusCode } from './../models/order.model';
 import { Category } from './../models/category.model';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
@@ -29,6 +29,15 @@ export class FirebaseService {
     return itemsRef.valueChanges()
   }
 
+  getNumberCategories(number: number): Observable<any> {
+    const itemsRef: AngularFireList<any> = this._db.list('categories', ref => ref.limitToFirst(number));
+    return itemsRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
+  }
+
   getProducts(): Observable<any> {
     const itemsRef: AngularFireList<any> = this._db.list('products');
     return itemsRef.snapshotChanges().pipe(
@@ -43,10 +52,6 @@ export class FirebaseService {
     return itemsRef.valueChanges();
   }
 
-  searchProducts(query: string){
-    const itemsRef = this._db.list('products');
-    return itemsRef.valueChanges();
-  }
 
   getProduct(id: string) {
     const itemsRef = this._db.object(`/products/${id}`);
@@ -109,13 +114,19 @@ export class FirebaseService {
   addOrder(order: Order): any {
     order.date = Date.now();
     order.month = DateHelper.getMonth();
+    order.status = "Pending";
+    order.statusCode = StatusCode.PENDING;
     const itemsRef: AngularFireList<any> = this._db.list('orders');
     return itemsRef.push(order);
   }
 
   getOrdersByUser(user: string): any {
-    const itemsRef = this._db.list('orders', ref => ref.orderByChild('user').equalTo(user));
-    return itemsRef.valueChanges();
+    const itemsRef: AngularFireList<any>  = this._db.list('orders', ref => ref.orderByChild('user').equalTo(user));
+    return itemsRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
   }
 
   getOrdersByDate(date: string): any {
@@ -129,8 +140,16 @@ export class FirebaseService {
   }
 
   getAllOrders(): any {
-    const itemsRef = this._db.list('orders');
-    return itemsRef.valueChanges();
+    const itemsRef: AngularFireList<any> = this._db.list('orders');
+    return itemsRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
+  }
 
+  updateOrder(order: Order) {
+    const itemsRef: AngularFireList<any> = this._db.list('orders');
+    itemsRef.update(order.key, { statusCode: order.statusCode, status: order.status });
   }
 }

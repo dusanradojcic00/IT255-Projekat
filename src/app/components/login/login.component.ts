@@ -1,6 +1,6 @@
 import { getUserState, getUserStatus } from './../../store/user/user.reducer';
 import { userLogin } from './../../store/user/user.action';
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '@shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
     this._auth.login(username, password);
     this.store.dispatch(userLogin());
+
   }
 
   ngOnInit(): void {

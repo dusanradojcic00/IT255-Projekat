@@ -1,25 +1,25 @@
 import { map } from 'rxjs/operators';
-import { FirebaseService } from './../../services/firebase.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css']
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent {
   unfiltered$: Observable<any>;
   products$: Observable<any>;
   query: string;
 
-  constructor(private route: ActivatedRoute, private databse: FirebaseService) { }
-
-  ngOnInit(): void {
-    this.query = this.route.snapshot.paramMap.get('query');
-    this.unfiltered$ = this.databse.searchProducts(this.query);
-    this.products$ = this.getProductByName(this.query);
+  constructor(private route: ActivatedRoute, private databse: FirebaseService) { 
+    this.route.params.subscribe((value ) => {
+      this.query = value.query;
+      this.unfiltered$ = this.databse.getProducts();
+      this.products$ = this.getProductByName(this.query);
+    })
   }
 
   getProductByName(query: String) {

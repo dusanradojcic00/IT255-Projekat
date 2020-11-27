@@ -1,5 +1,5 @@
-import { FirebaseService } from './../../../services/firebase.service';
-import { Product } from './../../../models/product.model';
+import { FirebaseService } from '@shared/services/firebase.service';
+import { Product } from '@shared/models/product.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 

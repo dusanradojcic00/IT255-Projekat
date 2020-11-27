@@ -1,5 +1,5 @@
-import { AuthService } from './../../services/auth.service';
-import { FirebaseService } from './../../services/firebase.service';
+import { AuthService } from '@shared/services/auth.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orders$ = this.database.getOrdersByUser(this.auth.getUserId());
+    
   }
 
 }

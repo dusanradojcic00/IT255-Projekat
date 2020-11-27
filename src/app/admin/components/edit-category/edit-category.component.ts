@@ -1,5 +1,5 @@
-import { Category } from './../../../models/category.model';
-import { FirebaseService } from './../../../services/firebase.service';
+import { Category } from '@shared/models/category.model';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 

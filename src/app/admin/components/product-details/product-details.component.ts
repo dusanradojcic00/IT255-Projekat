@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { Product } from './../../../models/product.model';
-import { FirebaseService } from './../../../services/firebase.service';
+import { Product } from '@shared/models/product.model';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

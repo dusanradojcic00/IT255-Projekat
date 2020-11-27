@@ -1,4 +1,4 @@
-import { CartItem } from './../../models/cart-item.model';
+import { CartItem } from '@shared/models/cart-item.model';
 import { createAction, props } from '@ngrx/store';
 
 export const addItem = createAction('[Cart] Add item', props<{cartItem: CartItem}>());

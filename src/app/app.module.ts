@@ -1,3 +1,5 @@
+import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from './../environments/environment';
@@ -25,6 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { loginReducer } from './store/user/user.reducer';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +44,10 @@ import { SearchResultComponent } from './components/search-result/search-result.
     CartComponent,
     LoginComponent,
     RegisterComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    OrdersComponent,
+    OrderItemComponent
+
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

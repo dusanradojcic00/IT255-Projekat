@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon';
-import { FirebaseService } from './../../services/firebase.service';
-import { Order } from './../../models/order.model';
-import { AuthService } from './../../services/auth.service';
+import { FirebaseService } from '@shared/services/firebase.service';
+import { Order } from '@shared/models/order.model';
+import { AuthService } from '@shared/services/auth.service';
 import { removeItem, removeAllItems } from './../../store/cart/cart.actions';
-import { CartItem } from './../../models/cart-item.model';
-import { Product } from './../../models/product.model';
+import { CartItem } from '@shared/models/cart-item.model';
+import { Product } from '@shared/models/product.model';
 import { getCartItems } from './../../store/cart/cart.reducer';
 import { Component, HostBinding, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { Store, select } from '@ngrx/store';

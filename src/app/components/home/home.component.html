@@ -1,3 +1,15 @@
-<button class="btn btn-large" *ngFor="let category of items | async"
+<div id="background" class="container-xl d-flex">
+    <button class="btn btn-large btn-info" id="call-to-action"  [routerLink]="['/category', firstCategory]" [disabled]="disabled">Start shopping</button>
+</div>
+<div class="container-xl">
+    <h1>Choose from our top categories:</h1>
+    <div class="row">
+        <div *ngFor="let category of items | async; let i = index" class="card col-md-3 col-sm-6 p-3 d-flex" (click)="goTo(category.key)">
+            <img src="{{'/assets/icon-' + i + '.png' }}" id="icon">
+            <h1>{{category.name}}</h1>
+        </div>
+    </div>
+</div>
+<!-- <button class="btn btn-large" *ngFor="let category of items | async"
     [routerLink]="['/category', category.key]">{{category.name}} and {{category.key}}</button>
-<button (click)="addCategory()">Dodaj</button>
+<button (click)="addCategory()">Dodaj</button> -->

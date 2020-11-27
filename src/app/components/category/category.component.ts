@@ -1,4 +1,4 @@
-import { FirebaseService } from './../../services/firebase.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';

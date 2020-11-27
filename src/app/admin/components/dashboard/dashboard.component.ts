@@ -1,7 +1,6 @@
-import { DateHelper } from './../../../helpers/helper';
-import { DateTime } from 'luxon';
+import { DateHelper } from '@shared/helpers/helper';
 import { Observable } from 'rxjs';
-import { FirebaseService } from './../../../services/firebase.service';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType } from 'chart.js';
 
@@ -18,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public lineChartLabels = [];
-  public lineChartData: ChartDataSets[] = [{ data: [], label: "Revenue per day", pointRadius: 7  },
+  public lineChartData: ChartDataSets[] = [{ data: [], label: "Revenue per day", pointRadius: 7 },
   { data: [], label: "Orders per day", yAxisID: 'y-axis-1', pointRadius: 7 }];
   public lineChartType: ChartType = 'line';
   public lineChartOptions = {
@@ -59,9 +58,11 @@ export class DashboardComponent implements OnInit {
         return {
           "date": res.date,
           "total": res.total,
+          "statusCode": res.statusCode,
           "number": 1
         }
       })
+      data = data.filter(item => item.statusCode === 1 || item.statusCode === 2 || item.statusCode === 3)
       //Sorting on date (date here is in milliseconds)
       data.sort((a, b) => {
         return a.date - b.date;

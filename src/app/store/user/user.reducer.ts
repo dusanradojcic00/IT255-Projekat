@@ -1,4 +1,4 @@
-import { User } from './../../models/user.model';
+import { User } from '@shared/models/user.model';
 
 import { userLogin, userLogout } from './user.action';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';

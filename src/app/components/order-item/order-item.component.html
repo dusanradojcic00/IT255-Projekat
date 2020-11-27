@@ -1,0 +1,39 @@
+<li class="list-group-item mt-2">
+    <h5>Date: {{getDate(order.date)}}</h5>
+    <table class="table">
+        <thead class="thead-light">
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price per unit</th>
+            <th>Total price</th>
+        </thead>
+        <tr *ngFor="let item of order.products">
+            <td>{{item.product.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.product.price}}</td>
+            <td>{{item.product.price * item.quantity}}</td>
+        </tr>
+    </table>
+    <div class="d-flex" style="justify-content: space-between;">
+        <h5 class="text-left d-inline">Status: {{order.status}}</h5>
+        <h5 class="text-right">Total: {{order.total}} RSD</h5>
+    </div>
+    <div class="d-flex mt-3" style="justify-content: space-evenly;">
+        <button class="btn btn-large btn-danger" *ngIf="order.statusCode == 0" (click)="cancelOrder()">Cancel this
+            order</button>
+        <button class="btn btn-large btn-success" *ngIf="order.statusCode == 1" disabled>Order is being
+            prepared for shipping</button>
+        <button class="btn btn-large btn-warning" *ngIf="order.statusCode == 2" (click)="confirmOrder()">Confirm order
+            received and pay</button>
+        <button class="btn btn-large btn-warning" *ngIf="order.statusCode == 3" disabled>This order is
+            completed</button>
+        <button class="btn btn-large btn-primary"
+            *ngIf="order.statusCode == 2 || order.statusCode == 3 || order.statusCode == 1" (click)="sendInvoice()">Send
+            invoice to e-mail</button>
+
+        <button class="btn btn-large btn-secondary" *ngIf="order.statusCode == 4" disabled>This order is
+            declined/canceled</button>
+        <button (click)="repeatOrder()" class="btn btn-large btn-info">Repeat this
+            order</button>
+    </div>
+</li>

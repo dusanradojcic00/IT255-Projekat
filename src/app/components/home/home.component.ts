@@ -1,10 +1,8 @@
-import { Product } from './../../models/product.model';
-import { addItem } from './../../store/cart/cart.actions';
-import { FirebaseService } from './../../services/firebase.service';
+import { Router } from '@angular/router';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -14,17 +12,27 @@ import { Store } from '@ngrx/store';
 })
 export class HomeComponent implements OnInit {
   items: Observable<any[]>;
-  @HostBinding('attr.class') cssClass = 'container';
-  constructor(private db: AngularFireDatabase, private _service: FirebaseService, private _store: Store) {
+  firstCategory: any;
+  disabled = true;
+  constructor(private db: AngularFireDatabase, private _service: FirebaseService, private _store: Store, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.items = this._service.getCategories();
+    this.items = this._service.getNumberCategories(4);
+    this.items.subscribe((item) => {
+      this.firstCategory = item[0].key;
+      this.disabled = false;
+    })
   }
 
   addCategory() {
 
+  }
+
+  goTo(key: string) {
+    console.log(key);
+    this.router.navigate(['/category', key]);
   }
 
 }

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
@@ -12,16 +13,19 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { DataImportComponent } from './components/data-import/data-import.component';
 import { ImportExportComponent } from './components/import-export/import-export.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent, ImportExportComponent],
+  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent, ImportExportComponent, OrderListComponent, OrderItemComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
-  ]
+    ChartsModule,
+    SharedModule
+  ],
 })
 export class AdminModule { }

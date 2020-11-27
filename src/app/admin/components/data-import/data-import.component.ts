@@ -1,6 +1,6 @@
-import { ExcelHelper } from './../../../helpers/helper';
-import { Product } from 'src/app/models/product.model';
-import { FirebaseService } from './../../../services/firebase.service';
+import { ExcelHelper } from '@shared/helpers/helper';
+import { FirebaseService } from '@shared/services/firebase.service';
+import { Product } from '@shared/models/product.model';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 @Component({

@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
-import { FirebaseService } from './../../../services/firebase.service';
-import { ExcelHelper } from './../../../helpers/helper';
-import { Product } from 'src/app/models/product.model';
+import { FirebaseService } from '@shared/services/firebase.service';
+import { ExcelHelper } from '@shared/helpers/helper';
+import { Product } from '@shared/models/product.model';
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 @Component({

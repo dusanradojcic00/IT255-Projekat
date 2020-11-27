@@ -1,5 +1,5 @@
-import { FirebaseService } from './../../../services/firebase.service';
-import { Category } from './../../../models/category.model';
+import { FirebaseService } from '@shared/services/firebase.service';
+import { Category } from '@shared/models/category.model';
 import { Component, DoCheck, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

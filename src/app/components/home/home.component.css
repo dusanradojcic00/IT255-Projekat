@@ -1,0 +1,29 @@
+#background {
+    width: 100%;
+    min-height: 500px;
+    background-image: url('/assets/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    justify-content: center;
+    align-items: center;
+}
+
+#call-to-action {
+
+}
+
+#icon {
+    max-width: 50px;
+}
+
+.card {
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    background: gray;
+    cursor: pointer;
+    color: white;
+}
