@@ -1,0 +1,12 @@
+#image-edit {
+    flex-direction: column;
+}
+
+img {
+    width: 20%;
+    height: 20%;
+}
+
+button {
+    width: fit-content;
+}

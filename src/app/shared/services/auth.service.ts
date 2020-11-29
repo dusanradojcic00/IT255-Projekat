@@ -1,3 +1,5 @@
+import { userLogin, userLogout } from './../../store/user/user.action';
+import { FirebaseService } from '@shared/services/firebase.service';
 import { getUserStatus } from './../../store/user/user.reducer';
 import { Store, select } from '@ngrx/store';
 import { removeItem } from './../../store/cart/cart.actions';
@@ -6,12 +8,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from '@shared/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user: Observable<any>;
 
-  constructor(private firebaseAuth: AngularFireAuth, private _router: Router, private store: Store) {
+  constructor(private firebaseAuth: AngularFireAuth, private _router: Router, private store: Store, private database: FirebaseService) {
     this.user = firebaseAuth.authState;
   }
 
@@ -34,6 +37,7 @@ export class AuthService {
       .then(value => {
         console.log('Success!', value);
         this._router.navigate(['/login']);
+        this.database.addUser(value.user.uid, email);
         return true;
       })
       .catch(err => {
@@ -42,13 +46,17 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): any {
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Nice, it worked!', value);
         localStorage.setItem('userId', value.user.uid);
         localStorage.setItem('username', value.user.email);
+        let user = new User();
+        user.uid = value.user.uid;
+        user.username = value.user.email;
+        this.store.dispatch(userLogin({ user: user }));
         this._router.navigate(['']);
         return true;
       })
@@ -60,6 +68,7 @@ export class AuthService {
 
   logout() {
     this.firebaseAuth.signOut();
+    this.store.dispatch(userLogout());
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
   }

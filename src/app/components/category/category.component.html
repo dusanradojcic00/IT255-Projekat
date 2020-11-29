@@ -1,16 +1,25 @@
-<div class="wrapper">
+<div class="wrapper mt-3">
 
-    <nav id="sidebar">
+    <nav id="sidebar" *ngIf="!mobile">
         <ul class="list-group">
+            <li class="list-group-item bg-dark text-white">
+                Categories:
+            </li>
             <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">
                 <li class="list-group-item" routerLinkActive="active">{{category.name}}</li>
             </a>
         </ul>
-
     </nav>
+    <div class="form-group p-3" *ngIf="mobile">
+        <label for="categoryInput">Category:</label>
+        <select class="form-control" id="categoryInput" (change)="onChange($event)">
+            <option value="" disabled>Select the category</option>
+            <option *ngFor="let category of categories$ | async" value="{{category.key}}" [selected]="category.key === selected">{{category.name}}</option>
+        </select>
+    </div>
 
 
-    <div id="content">
+    <div id="content" class="p-1">
         <div *ngIf="item$ | async as item">
             <app-productlist [category]="item"></app-productlist>
         </div>

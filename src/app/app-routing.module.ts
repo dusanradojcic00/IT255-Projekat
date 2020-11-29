@@ -1,3 +1,5 @@
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { props } from '@ngrx/store';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { AdminAuthGuardService as AdminAuthGuard } from '@shared/services/admin-auth-guard.service';
@@ -18,10 +20,11 @@ import { AuthGuardService as AuthGuard } from '@shared/services/auth-guard.servi
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'profile/myorders', component: OrdersComponent},
+  { path: 'profile/myorders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'profile/edit', component: EditProfileComponent, canActivate: [AuthGuard] },
   { path: 'category/:id', component: CategoryComponent },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'search/:query', component: SearchResultComponent},
+  { path: 'search/:query', component: SearchResultComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

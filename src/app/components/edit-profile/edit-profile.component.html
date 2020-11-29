@@ -1,0 +1,40 @@
+<div class="container my-3">
+    <h5>Edit profile info</h5>
+    <form action="" [formGroup]="profileForm" (submit)="submitForm()">
+        <div class="form-group">
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="surnameInput">Surname:</label>
+            <input type="text" id="surnameInput" class="form-control" formControlName="surname">
+        </div>
+        <div class="form-group">
+            <label for="adressInput">Adress:</label>
+            <input type="text" id="adressInput" class="form-control" formControlName="adress">
+        </div>
+        <div class="form-group">
+            <label for="phoneInput">Phone:</label>
+
+            <input type="text" id="phoneInput" class="form-control" formControlName="phone">
+        </div>
+        <div class="form-group">
+            <label for="companyInput">Comany:</label>
+            <input type="text" id="companyInput" class="form-control" formControlName="company">
+        </div>
+        <div class="form-group">
+            <label for="compAdressInput">Company adress:</label>
+            <input type="text" id="compAdressInput" class="form-control" formControlName="companyAdress">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" class="btn btn-primary">
+        </div>
+    </form>
+    <div id="image-edit" class="d-flex">
+        <h5>Edit the profile picture:</h5>
+        <img *ngIf="user !== undefined" src="{{user.img}}" alt="">
+
+            <input type="file" class="form-control-file mt-1" (change)="uploadFile($event)">
+            <button class="btn btn-primary mt-1" (click)="submitImage()">Change the picture</button>
+    </div>
+</div>

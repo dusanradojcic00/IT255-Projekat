@@ -1,3 +1,5 @@
+import { getUser } from './../../store/user/user.reducer';
+import { Store, select } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -13,7 +15,8 @@ export class SearchComponent implements DoCheck, OnDestroy {
   loggedIn: boolean;
   public keyUp = new Subject<KeyboardEvent>();
   private subscription: Subscription;
-  constructor(private auth: AuthService, private router: Router) { }
+  username: string;
+  constructor(private auth: AuthService, private router: Router, private store: Store) { }
 
   ngDoCheck(): void {
     this.loggedIn = this.auth.isUserLogged();
@@ -27,6 +30,9 @@ export class SearchComponent implements DoCheck, OnDestroy {
     ).subscribe((item) => {
       this.router.navigate(['/search', item.toLowerCase()]);
     })
+    this.store.pipe(select(getUser)).subscribe(item => {
+      this.username = item.username.split('@')[0];
+    });
   }
 
   ngOnDestroy(): void {

@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { DateHelper } from '@shared/helpers/helper';
 import { Order, StatusCode } from '@shared/models/order.model';
 import { Observable } from 'rxjs';
@@ -15,11 +16,9 @@ export class OrderListComponent implements OnInit {
   constructor(private database: FirebaseService) { }
 
   ngOnInit(): void {
-    this.orders$ = this.database.getAllOrders();
+    this.orders$ = this.database.getAllOrders().pipe(
+      map((results: any[]) => results.sort((a, b) => b.date - a.date)));;
   }
-
-
-
 
   acceptOrder(order: Order) {
     order.status = "Accepted";

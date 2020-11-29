@@ -9,13 +9,11 @@ import * as XLSX from 'xlsx';
   templateUrl: './import-export.component.html',
   styleUrls: ['./import-export.component.css']
 })
-export class ImportExportComponent implements OnInit {
+export class ImportExportComponent {
   isFileUploaded = false;
   products: Array<Product>;
   constructor(private database: FirebaseService) { }
 
-  ngOnInit(): void {
-  }
 
   onFileChange(ev) {
     let workBook = null;
@@ -30,27 +28,21 @@ export class ImportExportComponent implements OnInit {
         initial[name] = XLSX.utils.sheet_to_json(sheet);
         return initial;
       }, {});
-      this.products = jsonData.products.map(item => {
-        return new Product(item.name, item.description, item.image, item.category, item.price, item.key);
-      })
+      this.products = jsonData.products.map(item => Object.assign({}, item));
       this.isFileUploaded = true;
     }
     reader.readAsBinaryString(file);
   }
 
-  onSubmit(){
+  uploadData(){
+    console.log(2);
     this.database.updateProducts(this.products);
   }
 
-  downloadTemplate() {
-    ExcelHelper.exportToFile([{ ...new Product() }], "products");
-  }
-
   exportData(){
-    let arr = [];
+    console.log(1);
     this.database.getProducts().subscribe(item => {
-      arr = item;
-      ExcelHelper.exportToFile(arr, "products");
+      ExcelHelper.exportToFile(item, "products");
     })
   }
 

@@ -19,7 +19,7 @@
         <label for="categoryInput">Category:</label>
         <select class="form-control" id="categoryInput" formControlName="category">
             <option value="" disabled selected>Select the category</option>
-            <option *ngFor="let category of categories$ | async">{{category.name}}</option>
+            <option *ngFor="let category of categories$ | async" value="{{category.key}}">{{category.name}}</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

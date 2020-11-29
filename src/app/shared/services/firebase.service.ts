@@ -3,9 +3,10 @@ import { DateHelper } from './../helpers/helper';
 import { Order, StatusCode } from './../models/order.model';
 import { Category } from './../models/category.model';
 import { map } from 'rxjs/operators';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '@shared/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,8 +26,11 @@ export class FirebaseService {
   }
 
   getCategory(id: string | null) {
-    const itemsRef = this._db.object(`/categories/${id}`);
-    return itemsRef.valueChanges()
+    const itemsRef: AngularFireObject<any> = this._db.object(`/categories/${id}`);
+    return itemsRef.snapshotChanges().pipe(
+      map((c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
   }
 
   getNumberCategories(number: number): Observable<any> {
@@ -47,8 +51,8 @@ export class FirebaseService {
     );
   }
 
-  getProductsByCategory(category: string): Observable<any> {
-    const itemsRef = this._db.list('/products', ref => ref.orderByChild('category').equalTo(category));
+  getProductsByCategory(category): Observable<any> {
+    const itemsRef = this._db.list('/products', ref => ref.orderByChild('category').equalTo(category.key));
     return itemsRef.valueChanges();
   }
 
@@ -71,9 +75,9 @@ export class FirebaseService {
     // return product;
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): any {
     const itemsRef: AngularFireList<any> = this._db.list('products');
-    itemsRef.push(product);
+    return itemsRef.push(product);
   }
 
   addProducts(products: Product[]): any {
@@ -121,7 +125,7 @@ export class FirebaseService {
   }
 
   getOrdersByUser(user: string): any {
-    const itemsRef: AngularFireList<any>  = this._db.list('orders', ref => ref.orderByChild('user').equalTo(user));
+    const itemsRef: AngularFireList<any> = this._db.list('orders', ref => ref.orderByChild('user').equalTo(user));
     return itemsRef.snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
@@ -151,5 +155,29 @@ export class FirebaseService {
   updateOrder(order: Order) {
     const itemsRef: AngularFireList<any> = this._db.list('orders');
     itemsRef.update(order.key, { statusCode: order.statusCode, status: order.status });
+  }
+
+  getUser(uid: string) {
+    const userRef: AngularFireObject<any> = this._db.object(`users/${uid}`);
+    return userRef.snapshotChanges().pipe(
+      map((c => ({ key: c.payload.key, ...c.payload.val() })))
+    );
+  }
+
+  addUser(id: string, email: string) {
+    const itemsRef: AngularFireList<any> = this._db.list('users');
+    const imgBlank = "https://firebasestorage.googleapis.com/v0/b/projekat-lager.appspot.com/o/images%2Fblank.png?alt=media&token=90b90bce-baba-4473-bdad-59f98427369f"
+    return itemsRef.update(id, { email: email, img: imgBlank });
+  }
+
+  updateUserImg(user) {
+    const itemsRef: AngularFireList<any> = this._db.list('users');
+    return itemsRef.update(user.uid, { img: user.img });
+  }
+
+  updateUser(user) {
+    console.log(user);
+    const itemsRef: AngularFireList<any> = this._db.list('users');
+    return itemsRef.update(user.uid, { ...user });
   }
 }

@@ -1,11 +1,11 @@
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
+import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -29,6 +29,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     RegisterComponent,
     SearchResultComponent,
     OrdersComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    EditProfileComponent
 
   ],
   imports: [
@@ -56,8 +59,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     StoreModule.forRoot({
       cart: cartReducer,
       user: loginReducer
@@ -66,7 +69,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    SharedModule
+    SharedModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

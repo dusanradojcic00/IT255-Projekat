@@ -1,4 +1,3 @@
-import { getUserState, getUserStatus } from './../../store/user/user.reducer';
 import { userLogin } from './../../store/user/user.action';
 import { AuthService } from '@shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,8 +29,6 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
     this._auth.login(username, password);
-    this.store.dispatch(userLogin());
-
   }
 
   ngOnInit(): void {

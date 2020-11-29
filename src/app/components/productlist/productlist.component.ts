@@ -15,7 +15,7 @@ export class ProductlistComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.category) {
-      this.products = this._service.getProductsByCategory(this.category.name);
+      this.products = this._service.getProductsByCategory(this.category);
     }
   }
 
