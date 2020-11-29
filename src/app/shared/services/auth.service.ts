@@ -1,6 +1,6 @@
 import { userLogin, userLogout } from './../../store/user/user.action';
 import { FirebaseService } from '@shared/services/firebase.service';
-import { getUserStatus } from './../../store/user/user.reducer';
+import { getUserStatus, UserData } from './../../store/user/user.reducer';
 import { Store, select } from '@ngrx/store';
 import { removeItem } from './../../store/cart/cart.actions';
 
@@ -35,7 +35,6 @@ export class AuthService {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Success!', value);
         this._router.navigate(['/login']);
         this.database.addUser(value.user.uid, email);
         return true;
@@ -50,19 +49,18 @@ export class AuthService {
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Nice, it worked!', value);
         localStorage.setItem('userId', value.user.uid);
         localStorage.setItem('username', value.user.email);
-        let user = new User();
-        user.uid = value.user.uid;
-        user.username = value.user.email;
+        let user= {
+          uid: value.user.uid,
+          username: value.user.email
+        }
         this.store.dispatch(userLogin({ user: user }));
         this._router.navigate(['']);
         return true;
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
-        return false;
+        alert(err.message);
       });
   }
 

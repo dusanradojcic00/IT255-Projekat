@@ -31,6 +31,7 @@ export class SearchComponent implements DoCheck, OnDestroy {
       this.router.navigate(['/search', item.toLowerCase()]);
     })
     this.store.pipe(select(getUser)).subscribe(item => {
+      if (item !== null)
       this.username = item.username.split('@')[0];
     });
   }

@@ -1,11 +1,13 @@
-import { User } from '@shared/models/user.model';
-
 import { userLogin, userLogout } from './user.action';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
+export interface UserData {
+    uid: string,
+    username: string
+}
 export interface UserState {
     isAuthenticated: boolean;
-    user: User 
+    user: UserData 
 }
 
 const getUserFromStorage = () : UserState => {
