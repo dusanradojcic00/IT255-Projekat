@@ -180,4 +180,16 @@ export class FirebaseService {
     const itemsRef: AngularFireList<any> = this._db.list('users');
     return itemsRef.update(user.uid, { ...user });
   }
+
+  isCouponValid(code: string): Observable<boolean> {
+    const itemsRef: AngularFireList<any> = this._db.list('coupons', ref => ref.orderByChild('code').equalTo(code));
+    return itemsRef.valueChanges().pipe(map(item => item.length > 0));
+  }
+
+  getDiscount(code: string): Observable<any> {
+    const itemsRef: AngularFireList<any> = this._db.list('coupons', ref => ref.orderByChild('code').equalTo(code));
+    return itemsRef.valueChanges().pipe(map(item => item[0].discount));
+  }
+
+
 }

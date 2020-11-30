@@ -4,18 +4,28 @@
         <li *ngFor="let item of cartItems$ | async" class="list-group-item">
             <div class=" d-flex" style="justify-content: space-between;">
                 <div>
-                    <h1>{{item.product.name}}</h1>
-                    <h2>Price: {{item.product.price}} RSD</h2>
-                    <h3>Quantity: {{item.quantity}}</h3>
+                    <h3>{{item.product.name}}</h3>
+                    <h4>Price: {{item.product.price}} RSD</h4>
+                    <h4>Quantity: {{item.quantity}}</h4>
+                    <h4>Total: {{item.product.price * item.quantity}}</h4>
                 </div>
 
-                <img src="{{item.product.image}}" width="100">
+                <img src="{{item.product.image}}">
             </div>
             <div class="d-flex pt-2" style="justify-content: flex-end">
                 <button class="btn btn-danger" (click)="removeProduct(item)">Remove this item</button>
             </div>
         </li>
     </ul>
+    <div class="my-3 d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <label for="coupon" class="mr-3">Apply discount code:</label>
+            <input type="text" id="coupon" class="mr-3" #discount>
+            <button class="btn btn-primary mr-3" (click)="applyDiscountCode(discount.value)">Apply</button>
+            <span *ngIf="code">Coupon applied successfully</span>
+        </div>
+        <h2 class="text-right">Total: {{sum}} RSD</h2>
+    </div>
     <div class="d-flex mt-3" style="justify-content: space-evenly;">
         <button class="btn btn-warning" (click)="removeAll()">Remove all items</button>
         <button class="btn btn-success" (click)="payment()">Proceed to payment</button>
