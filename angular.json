@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "xlsx",
+              "chart.js"
+           ],
             "outputPath": "dist/projekat",
             "index": "src/index.html",
             "main": "src/main.ts",

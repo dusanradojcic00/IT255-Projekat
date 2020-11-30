@@ -1,6 +1,6 @@
 <form class="form-inline my-2 my-lg-0">
-    <a class="nav-link" [routerLink]="['/cart']">
-        Cart <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor"
+    <a class="nav-link text-light" [routerLink]="['/cart']">
+        Cart <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart2 text-light" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
@@ -11,8 +11,8 @@
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onSearch(search)">Search</button>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/login']">Login</a>
     <div class="d-flex" style="align-items: center;">
-        <span *ngIf="loggedIn" class="ml-2">{{username}}</span>
-        <a *ngIf="loggedIn" class="nav-link" (click)="logout()" href="#">Logout</a>
+        <span *ngIf="loggedIn" class="ml-3 text-light">{{username}}</span>
+        <a *ngIf="loggedIn" class="nav-link text-light" (click)="logout()" href="#">Logout</a>
     </div>
 
 </form>

@@ -1,24 +1,9 @@
 <div class="container my-3">
     <a routerLink="../"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-        </svg> Go back</a>
-    <!-- <ul class="list-group mt-3"> 
-        <li *ngFor="let order of orders$ | async" class="list-group-item">
-            Date: {{getDate(order.date)}}
-            <br>
-            Products:
-            <ul>              
-                <li *ngFor="let item of order.products">
-                    {{item.product.name}}, quantity: {{item.quantity}}
-                </li>
-            </ul>
-            Total: {{order.total}} RSD
-            <br>
-            <button (click)="repeatOrder(order.products)" class="btn btn-large btn-primary">Repeat this order</button>
-        </li>
-    </ul> -->
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+    </svg> Go back</a>
     <div class="form-group mt-3">
         <label for="categoryInput">Order status:</label>
         <select class="form-control" id="categoryInput" [(ngModel)]="orderCode">

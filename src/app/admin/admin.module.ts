@@ -15,10 +15,11 @@ import { DataImportComponent } from './components/data-import/data-import.compon
 import { ImportExportComponent } from './components/import-export/import-export.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { GraphComponent } from './components/graph/graph.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent, ImportExportComponent, OrderListComponent, OrderItemComponent],
+  declarations: [DashboardComponent, AddProductComponent, AddcategoryComponent, EditCategoryComponent, CategoryDetailsComponent, EditProductComponent, ProductDetailsComponent, DataImportComponent, ImportExportComponent, OrderListComponent, OrderItemComponent, GraphComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
