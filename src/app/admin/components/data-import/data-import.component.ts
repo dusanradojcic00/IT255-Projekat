@@ -36,9 +36,8 @@ export class DataImportComponent {
 
   onSubmit() {
     this.database.addProducts(this.products);
+    console.log('Uspesno dodavanje proizvoda');
   }
-
-
 
   downloadTemplate() {
     let arr = [{... new Product()}];

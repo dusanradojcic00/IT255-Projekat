@@ -1,0 +1,76 @@
+.fake {
+    opacity: 0.5;
+    overflow: hidden;
+}
+
+.img {
+    position: relative;
+    height: 120px;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.img::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    /* background: linear-gradient(90deg, transparent, #f1f1f1, transparent); */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.header {
+    width: 120px;
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.header::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    /* background: linear-gradient(90deg, transparent, #f1f1f1, transparent); */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    animation: loading 1s infinite;
+}
+
+.button {
+    width: 120px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    background-color: lightblue;
+    border-radius: 5px;
+}
+
+.button::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    /* background: linear-gradient(90deg, transparent, #f1f1f1, transparent); */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    animation: loading 1s infinite;
+}

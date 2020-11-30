@@ -1,7 +1,11 @@
-<div>
-    <img src="{{product.image}}">
-    <h4 class="text-center">{{product.name}}</h4>
-    <p>{{product.description}}</p>
-    <p>Price: {{product.price}} RSD</p>
-    <button class="btn btn-primary" (click)=addToCart()>ADD TO CART</button>
+<div style="height: 100%;" class="d-flex flex-column justify-content-between">
+    <div>
+        <img src="{{product.image}}">
+        <h4 class="text-center">{{product.name}}</h4>
+        <p>{{product.description}}</p>
+    </div>
+    <div>
+        <p>Price: {{product.price}} RSD</p>
+        <button class="btn btn-primary" (click)=addToCart()>ADD TO CART</button>
+    </div>
 </div>

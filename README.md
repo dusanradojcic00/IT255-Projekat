@@ -15,4 +15,4 @@ Zadatak softvera je da klijentima distributera olaksa porucivanje robe.
 * Dodavanje u korpu
 * Dodavanje kupona za popuste
 * Uredjivanje profila
-* Pregled porudzbina po statusu
+* Pregled porudzbina po statusu 

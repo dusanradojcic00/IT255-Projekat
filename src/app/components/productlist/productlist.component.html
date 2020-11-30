@@ -1,3 +1,10 @@
 <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-4 row-cols-sm-3 row-cols-2">
     <app-product *ngFor="let product of products | async" [product]="product" class="col mb-2"></app-product>
 </div>
+<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-4 row-cols-sm-3 row-cols-2" *ngIf="loading">
+    <div class="col mb-4 pb-4 border-bottom fake" *ngFor="let item of [].constructor(20);">
+        <div class="img"></div>
+        <div class="header"></div>
+        <div class="button"></div>
+    </div>
+</div>

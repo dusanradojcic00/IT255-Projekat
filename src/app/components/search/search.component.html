@@ -14,7 +14,7 @@
       </svg> Search</button>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/login']">Login</a>
     <div class="d-flex" style="align-items: center;">
-        <span *ngIf="loggedIn" class="ml-3 text-light">{{username}}</span>
+        <span *ngIf="loggedIn" class="text-light"><a routerLink="/profile" class="text-light nav-link">{{username}}</a></span>
         <a *ngIf="loggedIn" class="nav-link text-light" (click)="logout()" href="#">Logout</a>
     </div>
 

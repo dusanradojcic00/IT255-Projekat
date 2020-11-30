@@ -33,7 +33,6 @@ export class AddProductComponent implements OnInit {
     const image = this.productForm.get('image').value;
     const category = this.productForm.get('category').value;
     let product = new Product(name, description, image, category, price);
-    console.log(product);
     this._database.addProduct(product);
     return false;
   }

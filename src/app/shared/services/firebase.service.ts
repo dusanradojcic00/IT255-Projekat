@@ -2,7 +2,7 @@ import { Product } from './../models/product.model';
 import { DateHelper } from './../helpers/helper';
 import { Order, StatusCode } from './../models/order.model';
 import { Category } from './../models/category.model';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -53,26 +53,14 @@ export class FirebaseService {
 
   getProductsByCategory(category): Observable<any> {
     const itemsRef = this._db.list('/products', ref => ref.orderByChild('category').equalTo(category.key));
-    return itemsRef.valueChanges();
+    //Remove delay for production
+    return itemsRef.valueChanges().pipe(delay(3000));
   }
 
 
   getProduct(id: string) {
     const itemsRef = this._db.object(`/products/${id}`);
     return itemsRef.valueChanges()
-  }
-
-  getProductObject(id: string) {
-    // const itemsRef = this._db.object<Product>(`/products/${id}`);
-    // let product: Product;
-    // itemsRef.valueChanges().subscribe(data => {
-    //   product.name = data.name;
-    //   product.description = data.description;
-    //   product.image = data.image;
-    //   product.categoryId = data.categoryId;
-    //   product.options = data.options;
-    // })
-    // return product;
   }
 
   addProduct(product: Product): any {
