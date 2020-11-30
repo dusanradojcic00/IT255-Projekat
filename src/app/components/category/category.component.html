@@ -1,27 +1,34 @@
-<div class="wrapper mt-3">
+<div class="container-fluid">
+    <div class="row">
+        <div id="sidebar" *ngIf="!mobile" class="col-lg-2 bg-light sidebar-sticky">
+            <ul class="list-group">
+                <li class="border-bottom nav-link">
+                    Categories:
+                </li>
+                <!-- <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">
+                    <li class="list-group-item" routerLinkActive="active">{{category.name}}</li>
+                </a> -->
+                <li class="nav-link" *ngFor="let category of categories$ | async">
+                    <a [routerLink]="['/category', category.key]" routerLinkActive="active" class="side-link">
+                        {{category.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group p-3 col-12" *ngIf="mobile">
+            <label for="categoryInput">Category:</label>
+            <select class="form-control" id="categoryInput" (change)="onChange($event)">
+                <option value="" disabled>Select the category</option>
+                <option *ngFor="let category of categories$ | async" value="{{category.key}}"
+                    [selected]="category.key === selected">{{category.name}}</option>
+            </select>
+        </div>
 
-    <nav id="sidebar" *ngIf="!mobile">
-        <ul class="list-group">
-            <li class="list-group-item bg-dark text-white">
-                Categories:
-            </li>
-            <a *ngFor="let category of categories$ | async" [routerLink]="['/category', category.key]">
-                <li class="list-group-item" routerLinkActive="active">{{category.name}}</li>
-            </a>
-        </ul>
-    </nav>
-    <div class="form-group p-3" *ngIf="mobile">
-        <label for="categoryInput">Category:</label>
-        <select class="form-control" id="categoryInput" (change)="onChange($event)">
-            <option value="" disabled>Select the category</option>
-            <option *ngFor="let category of categories$ | async" value="{{category.key}}" [selected]="category.key === selected">{{category.name}}</option>
-        </select>
-    </div>
 
-
-    <div id="content" class="p-1">
-        <div *ngIf="item$ | async as item">
-            <app-productlist [category]="item"></app-productlist>
+        <div id="content" class="col-lg-10">
+            <div *ngIf="item$ | async as item">
+                <app-productlist [category]="item"></app-productlist>
+            </div>
         </div>
     </div>
 

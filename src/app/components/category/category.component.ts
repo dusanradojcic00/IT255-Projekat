@@ -26,7 +26,7 @@ export class CategoryComponent implements OnInit {
       this.selected = params.get('id');
     });
     this.breakpointObserver
-      .observe(['(max-width: 960px)'])
+      .observe(['(max-width: 1000px)'])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.mobile = true;

@@ -1,28 +1,19 @@
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5px;
+    height: calc(100vh - 56px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-#sidebar {
-    max-width: 30%;
-    width: 20%;
-    margin-left: 10px;
+.side-link {
+    color: gray;
 }
 
-#content {
-    width: 75%;
-    margin-left: 10px;
+.active {
+    color: #007bff;
 }
 
-@media (max-width: 960px){
-    #content {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .wrapper {
-        display: block;
-    }
-    
-}
+@media (max-width: 960px) {}
