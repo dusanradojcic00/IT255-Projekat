@@ -6,7 +6,6 @@ import { delay, map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '@shared/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +53,7 @@ export class FirebaseService {
   getProductsByCategory(category): Observable<any> {
     const itemsRef = this._db.list('/products', ref => ref.orderByChild('category').equalTo(category.key));
     //Remove delay for production
-    return itemsRef.valueChanges().pipe(delay(3000));
+    return itemsRef.valueChanges().pipe(delay(2000));
   }
 
 

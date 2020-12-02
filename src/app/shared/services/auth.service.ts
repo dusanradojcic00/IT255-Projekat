@@ -23,7 +23,6 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    // return localStorage.getItem('isAdmin') === '1' ? true : false;
     return localStorage.getItem('username') === 'dusanradojcic00@gmail.com' ? true : false;
   }
 
